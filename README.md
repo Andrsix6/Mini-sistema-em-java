@@ -1,28 +1,28 @@
 # Mini Sistema Interativo em Console
 
-🧩 Funcionalidades:
+## 🎯 Primeira Etapa: Cadastro de múltiplos usuários
+### 📚 Conceito:
+  Em vez de ler só um nome e idade, vamos permitir que o usuário cadastre vários perfis, usando um laço e armazenando os dados em listas.
 
-1. Login com nome e idade
+## 🛠️ ESTRUTURA DE CLASSE
+Primeiro, criamos uma classe Usuario para armazenar nome e idade.
+### 🧠 ENTENDIMENTO:
+Essa classe serve como um molde para usuários.
+O método temPermissao() encapsula a lógica de idade.
+Vamos usar um ArrayList<Usuario> para guardar todos os usuários.
 
-2. Verificação de permissão (maior de idade)
+## ✅ ETAPA 1: Código com múltiplos usuários
+⚠️ Leia antes de rodar:
+Essa versão só adiciona múltiplos usuários e imprime a lista no final.
+Ainda não tem histórico nem média nem arquivos. Vamos por partes.
 
-3. Menu com opções:
+## 📌 O que você aprendeu até aqui:
+| Conceito             | Explicação                                               |
+| -------------------- | -------------------------------------------------------- |
+| `ArrayList<Usuario>` | Armazena múltiplos objetos `Usuario` dinamicamente       |
+| Classe `Usuario`     | Organiza os dados e deixa o código limpo                 |
+| Encapsulamento       | A lógica de idade está dentro do objeto, fácil de reusar |
+| Laço `do...while`    | Repete o cadastro enquanto o usuário quiser              |
 
-  Ver porcentagem (Resultado)
-  Verificar nota (check)
-  Repetir loop (loop)
-  Sair (sair)
-
-5. Validação de entrada
-
-## 💡 Melhorias aplicadas:
-| Item                                           | O que foi feito                               |
-| ---------------------------------------------- | --------------------------------------------- |
-| ✅ Menu interativo                              | Usuário pode escolher entre ações diferentes  |
-| ✅ Validação de idade                           | Evita crash com entrada inválida              |
-| ✅ `switch` para opções                         | Fácil expansão do menu                        |
-| ✅ `nextLine()` para evitar erros com `Scanner` | Corrige bugs de leitura                       |
-| ✅ `do...while`                                 | Mantém o menu até que o usuário decida sair   |
-| ✅ Entrada segura                               | `hasNextInt()` evita exceções com `nextInt()` |
 
 //OBS: Código feito mais para aprendizado!
