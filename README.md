@@ -82,40 +82,14 @@ Percorre a lista de idades.
 
 Exibe apenas quem tem 18 anos ou mais.
 
-### 3.4. Buscar Pessoa pelo Nome
-
-System.out.print("Digite o nome para buscar: ");
--
-String busca = scanner.nextLine();
--
-boolean encontrado = false;
--
-for (int i = 0; i < nomes.size(); i++) {
-    if (nomes.get(i).equalsIgnoreCase(busca)) {
-        System.out.println("Encontrado: " + nomes.get(i) + " | Idade: " + idades.get(i));
-        encontrado = true;
-    }
-}
--
-if (!encontrado) {
-    System.out.println("Pessoa não encontrada!");
-}
--
-
-O usuário digita um nome.
-
-O sistema procura na lista de nomes.
-
-Se encontrar, exibe os dados. Caso contrário, informa que não encontrou.
-
-### 3.5. Remover Pessoa
+### 3.4. Remover Pessoa
 O usuário digita o nome da pessoa.
 
 Se for encontrado, é removido da lista de nomes e idades.
 
 O break encerra a busca após a primeira ocorrência.
 
-### 3.6. Sair do Sistema
+### 3.5. Sair do Sistema
 
 System.out.println("Encerrando o sistema.");
 -
