@@ -1,64 +1,77 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Usuario {
-    String nome;
-    int idade;
-
-    Usuario(String nome, int idade) {
-        this.nome = nome;
-        this.idade = idade;
-    }
-
-    boolean temPermissao() {
-        return idade >= 18 && idade <= 120;
-    }
-}
-
 public class Main {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Usuario> usuarios = new ArrayList<>();
+        // listas paralelas para os dados do usuário
+        ArrayList<Pessoa> pessoas = new ArrayList<>();
+        int opcao;
 
-        System.out.println("=== Cadastro de Usuários ===");
-
-        String continuar;
+        // mostra as opções para o usuário
         do {
-            System.out.print("Digite o nome: ");
-            String nome = scanner.nextLine();
+            System.out.println("\n=== Menu Principal ===");
+            System.out.println("1 - Cadastrar pessoa");
+            System.out.println("2 - Listar pessoas");
+            System.out.println("3 - Verificar maiores de idade");
+            System.out.println("4 - Sair");
+            System.out.print("Escolha uma opção: ");
+            opcao = scanner.nextInt();
+            // Executa a ação de acordo com a escolha do usuário
+            switch (opcao) {
+                case 1:
+                    // aqui vamos pedir nome e idade, e adicionar nas listas
+                    scanner.nextLine(); // limpa o buffer
 
-            System.out.print("Digite a idade: ");
-            int idade = 0;
+                    System.out.print("Digite o nome: ");
+                    String nome = scanner.nextLine();
 
-            // Validação de idade
-            while (true) {
-                if (scanner.hasNextInt()) {
-                    idade = scanner.nextInt();
-                    scanner.nextLine(); // limpar quebra de linha
+                    System.out.print("Digite a idade: ");
+                    int idade = scanner.nextInt();
+                    // salva os cadastros nome e idade em suas listas
+                    Pessoa p = new Pessoa(nome, idade);
+                    pessoas.add(p);
+
+                    System.out.println("Pessoa cadastrada com sucesso!");
                     break;
-                } else {
-                    System.out.print("Idade inválida. Digite novamente: ");
-                    scanner.next(); // descarta lixo
-                }
+                case 2:
+                    // listarPessoas();
+                    if (pessoas.isEmpty()) {
+                        System.out.println("Nenhuma pessoa cadastrada ainda.");
+                    } else {
+                        System.out.println("\n--- Lista de Pessoas ---");
+                        for (int i = 0; i < pessoas.size(); i++) {
+                            System.out.println((i + 1) + ". " + pessoas.get(i));
+                        }
+                    }
+                    break;
+                case 3:
+                    // verificarMaioresIdade();
+                    if (pessoas.isEmpty()) {
+                        System.out.println("Nenhuma pessoa cadastrada ainda");
+                    } else {
+                        System.out.println("\n--- Maiores de Idade ---");
+                        boolean encontrou = false;
+                        for (Pessoa pessoa : pessoas) {
+                            if (pessoa.isMaiorDeIdade()) {
+                                System.out.println(pessoa.getNome() + " tem " + pessoa.getIdade() + " anos");
+                                encontrou = true;
+                            }
+                        }
+                        if (!encontrou) {
+                            System.out.println("Nenhuma pessoa maior de idade encontrada.");
+                        }
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("Encerrando o sistema.");
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
             }
-
-            // Cria e armazena o usuário
-            Usuario user = new Usuario(nome, idade);
-            usuarios.add(user);
-
-            // Pergunta se deseja continuar
-            System.out.print("Deseja cadastrar outro usuário? (s/n): ");
-            continuar = scanner.nextLine();
-
-        } while (continuar.equalsIgnoreCase("s"));
-
-        System.out.println("\n=== Lista de Usuários Cadastrados ===");
-        for (Usuario u : usuarios) {
-            System.out.println("- " + u.nome + " (" + u.idade + " anos) " +
-                    (u.temPermissao() ? "-> Permissão concedida" : "-> Sem permissão"));
-        }
-
+            // Encerra a execução do console
+        } while (opcao != 4);
         scanner.close();
     }
 }
