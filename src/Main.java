@@ -14,7 +14,9 @@ public class Main {
             System.out.println("1 - Cadastrar pessoa");
             System.out.println("2 - Listar pessoas");
             System.out.println("3 - Verificar maiores de idade");
-            System.out.println("4 - Sair");
+            System.out.println("4 - Remover pessoa");
+            System.out.println("5 - Editar pessoa");
+            System.out.println("6 - Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
             // Executa a ação de acordo com a escolha do usuário
@@ -63,15 +65,61 @@ public class Main {
                         }
                     }
                     break;
-
+                // Remover pessoa
+                // A ideia é mostrar a lista, pedir o número da pessoa e remover da lista.
                 case 4:
-                    System.out.println("Encerrando o sistema.");
+                    if (pessoas.isEmpty()) {
+                        System.out.println("Nenhuma pessoa cadastrada para remover.");
+                    } else {
+                        System.out.println("\n--- Remover Pessoa ---");
+                        for (int i = 0; i < pessoas.size(); i++) {
+                            System.out.println((i +  1) + ". " + pessoas.get(i));
+                        }
+                        System.out.println("Digite o número da pessoa que deseja remover: ");
+                        int indiceRemover = scanner.nextInt() - 1;
+
+                        if (indiceRemover >= 0 && indiceRemover < pessoas.size()) {
+                            Pessoa removida = pessoas.remove(indiceRemover);
+                            System.out.println("Pessoa removida: " + removida.getNome());
+                        } else {
+                            System.out.println("Índice Inválido!");
+                        }
+                    }
+                    break;
+                case 5:
+                    if (pessoas.isEmpty()) {
+                        System.out.println("Nenhuma pessoa cadastrada para editar.");
+                    } else {
+                        System.out.println("\n--- Editar Pessoa ---");
+                        for (int i = 0; i < pessoas.size(); i++) {
+                            System.out.println((i + 1) + ". " + pessoas.get(i));
+                        }
+                        System.out.println("Digite o número da pessoa que deseja editar: ");
+                        int indiceEditar = scanner.nextInt() - 1;
+                        scanner.nextLine(); // Limpa o buffer
+
+                        if (indiceEditar >= 0 && indiceEditar < pessoas.size()) {
+                            Pessoa pessoa = pessoas.get(indiceEditar);
+
+                            System.out.print("Novo nome (atual: " + pessoa.getNome() + "): ");
+                            String novoNome = scanner.nextLine();
+
+                            System.out.print("Nova idade (atual: " + pessoa.getIdade() + "): ");
+                            int novaIdade = scanner.nextInt();
+
+                            // atualiza os dados
+                            pessoas.set(indiceEditar, new Pessoa(novoNome, novaIdade));
+                            System.out.println("Pessoa atualizada com sucesso!");
+                        } else {
+                            System.out.println("Índice Inválido!");
+                        }
+                    }
                     break;
                 default:
                     System.out.println("Opção inválida!");
             }
             // Encerra a execução do console
-        } while (opcao != 4);
+        } while (opcao != 6);
         scanner.close();
     }
 }
